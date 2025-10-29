@@ -13,9 +13,11 @@ interface UseTimerReturn {
   pauseTimer: () => void;
   resetTimer: () => void;
   switchMode: (mode: TimerMode) => void;
+  skipTimer: () => void;
+  onTimerComplete?: () => void;
 }
 
-export function useTimer(): UseTimerReturn {
+export function useTimer(onTimerComplete?: () => void): UseTimerReturn {
   const [timeRemaining, setTimeRemaining] = useState(WORK_TIME);
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState<TimerMode>('work');
@@ -57,6 +59,12 @@ export function useTimer(): UseTimerReturn {
     setIsRunning(false);
   }, [getDuration]);
 
+  // Skip timer (for testing) - sets time to 0 to trigger completion
+  const skipTimer = useCallback(() => {
+    setTimeRemaining(0);
+    setIsRunning(false);
+  }, []);
+
   // Timer countdown effect
   useEffect(() => {
     if (isRunning && timeRemaining > 0) {
@@ -70,8 +78,10 @@ export function useTimer(): UseTimerReturn {
               const newSessionCount = sessionCount + 1;
               setSessionCount(newSessionCount);
               
-              // TODO: Play notification sound
-              // TODO: Show "Did you solve it?" modal
+              // Trigger completion callback
+              if (onTimerComplete) {
+                setTimeout(() => onTimerComplete(), 100);
+              }
             }
             
             return 0;
@@ -86,7 +96,7 @@ export function useTimer(): UseTimerReturn {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isRunning, timeRemaining, mode, sessionCount]);
+  }, [isRunning, timeRemaining, mode, sessionCount, onTimerComplete]);
 
   return {
     timeRemaining,
@@ -97,5 +107,6 @@ export function useTimer(): UseTimerReturn {
     pauseTimer,
     resetTimer,
     switchMode,
+    skipTimer,
   };
 }

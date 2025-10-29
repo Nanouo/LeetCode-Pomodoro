@@ -8,7 +8,11 @@ function formatTime(seconds: number): string {
   return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
-export default function Timer() {
+interface TimerProps {
+  onTimerComplete?: () => void;
+}
+
+export default function Timer({ onTimerComplete }: TimerProps) {
   const {
     timeRemaining,
     isRunning,
@@ -17,7 +21,8 @@ export default function Timer() {
     startTimer,
     pauseTimer,
     resetTimer,
-  } = useTimer();
+    skipTimer,
+  } = useTimer(onTimerComplete);
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
@@ -45,7 +50,7 @@ export default function Timer() {
       </div>
 
       {/* Controls */}
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center flex-wrap">
         {!isRunning ? (
           <button
             onClick={startTimer}
@@ -67,6 +72,17 @@ export default function Timer() {
           className="px-8 py-3 bg-gray-500 text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
         >
           Reset
+        </button>
+
+        {/* Skip button for testing */}
+        <button
+          onClick={() => {
+            skipTimer();
+            onTimerComplete?.();
+          }}
+          className="px-8 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-sm"
+        >
+          Skip (Test)
         </button>
       </div>
     </div>
