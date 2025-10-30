@@ -4,6 +4,7 @@
 import {
   collection,
   addDoc,
+  setDoc,
   updateDoc,
   deleteDoc,
   doc,
@@ -30,7 +31,8 @@ export async function createProblem(
   userId: string,
   problemName: string,
   difficulty: 'Easy' | 'Medium' | 'Hard',
-  textNotes: string = ''
+  textNotes: string = '',
+  docId?: string
 ): Promise<string> {
   const problemData = {
     userId,
@@ -44,6 +46,13 @@ export async function createProblem(
     totalTimeSpent: 0,
     createdAt: serverTimestamp(),
   };
+
+  if (docId) {
+    // Use provided docId so local ID matches Firestore document ID
+    const docRef = doc(db, PROBLEMS_COLLECTION, docId);
+    await setDoc(docRef, problemData);
+    return docId;
+  }
 
   const docRef = await addDoc(collection(db, PROBLEMS_COLLECTION), problemData);
   return docRef.id;
