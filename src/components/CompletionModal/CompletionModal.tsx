@@ -28,13 +28,13 @@ export default function CompletionModal({
         <div className="space-y-3">
           <button
             onClick={onSolved}
-            className="w-full py-4 bg-leetcode-easy text-white rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors"
+            className="w-full py-4 bg-[#00b8a3] text-white rounded-lg font-semibold text-lg hover:opacity-90 transition-colors"
           >
             Yes, I solved it! 🎉
           </button>
           <button
             onClick={onKeepWorking}
-            className="w-full py-4 bg-gray-500 text-white rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors"
+            className="w-full py-4 bg-gray-600 text-white rounded-lg font-semibold text-lg hover:opacity-90 transition-colors"
           >
             No, keep working
           </button>

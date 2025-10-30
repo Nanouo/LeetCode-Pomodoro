@@ -54,8 +54,8 @@ export default function ProblemForm({ onStartSession }: ProblemFormProps) {
               onClick={() => setDifficulty('Easy')}
               className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
                 difficulty === 'Easy'
-                  ? 'bg-leetcode-easy text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-[#00b8a3] text-white hover:opacity-90'
+                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
               }`}
             >
               Easy
@@ -65,8 +65,8 @@ export default function ProblemForm({ onStartSession }: ProblemFormProps) {
               onClick={() => setDifficulty('Medium')}
               className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
                 difficulty === 'Medium'
-                  ? 'bg-leetcode-medium text-gray-900'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-[#ffc01e] text-gray-900 hover:opacity-90'
+                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
               }`}
             >
               Medium
@@ -76,8 +76,8 @@ export default function ProblemForm({ onStartSession }: ProblemFormProps) {
               onClick={() => setDifficulty('Hard')}
               className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
                 difficulty === 'Hard'
-                  ? 'bg-leetcode-hard text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-[#ef4743] text-white hover:opacity-90'
+                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
               }`}
             >
               Hard
@@ -89,7 +89,7 @@ export default function ProblemForm({ onStartSession }: ProblemFormProps) {
         <button
           type="submit"
           disabled={!problemName.trim()}
-          className="w-full py-3 bg-leetcode-easy text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 bg-[#00b8a3] text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Start Session
         </button>

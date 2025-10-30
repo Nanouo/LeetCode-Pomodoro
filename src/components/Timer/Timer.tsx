@@ -54,14 +54,14 @@ export default function Timer({ onTimerComplete }: TimerProps) {
         {!isRunning ? (
           <button
             onClick={startTimer}
-            className="px-8 py-3 bg-leetcode-easy text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+            className="px-8 py-3 bg-[#00b8a3] text-white rounded-lg font-semibold hover:opacity-90 transition-colors"
           >
             Start
           </button>
         ) : (
           <button
             onClick={pauseTimer}
-            className="px-8 py-3 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+            className="px-8 py-3 bg-[#ffc01e] text-gray-900 rounded-lg font-semibold hover:opacity-90 transition-colors"
           >
             Pause
           </button>
@@ -69,7 +69,7 @@ export default function Timer({ onTimerComplete }: TimerProps) {
         
         <button
           onClick={resetTimer}
-          className="px-8 py-3 bg-gray-500 text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+          className="px-8 py-3 bg-gray-600 text-white rounded-lg font-semibold hover:opacity-90 transition-colors"
         >
           Reset
         </button>
@@ -80,7 +80,7 @@ export default function Timer({ onTimerComplete }: TimerProps) {
             skipTimer();
             onTimerComplete?.();
           }}
-          className="px-8 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-sm"
+          className="px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-sm"
         >
           Skip (Test)
         </button>
